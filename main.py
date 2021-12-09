@@ -12,11 +12,13 @@ def submit_article(path):
         print(type(f))
         conf = f.read()
         print(conf)
-    # with open(f"{path}/item.md") as f:
-    #     body = f.read()
+    with open(f"{path}/item.md") as f:
+        body = f.read()
+        print(body)
     # headers = {"Authorization": f"Bearer {TOKEN}"}
-    # item = json.loads(conf)
-    # item["body"] = body
+    item = json.loads(conf)
+    item["body"] = body
+    print(item)
 
     # if item["id"] == "":
     #     res = requests.post(BASE_URL, headers=headers, json=item)
