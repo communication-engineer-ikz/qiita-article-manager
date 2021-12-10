@@ -3,7 +3,13 @@ import json
 import datetime
 
 BASE_URL = "https://qiita.com/api/v2/items"
-TOKEN = ""#config ファイルから読み込む
+
+with open(f"personal_config.json") as f:
+    personal_config = f.read()
+    print(personal_config)
+
+TOKEN = json.loads(personal_config)["token"]
+print(TOKEN)
 
 def submit_article(path):
     print("submit_article")
