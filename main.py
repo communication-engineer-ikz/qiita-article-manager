@@ -6,25 +6,17 @@ BASE_URL = "https://qiita.com/api/v2/items"
 
 with open(f"personal_config.json") as f:
     personal_config = f.read()
-    print(personal_config)
 
 TOKEN = json.loads(personal_config)["token"]
-print(TOKEN)
 
 def submit_article(path):
-    print("submit_article")
-    print(path)
     with open(f"{path}/config.json") as f:
-        print(type(f))
         conf = f.read()
-        print(conf)
     with open(f"{path}/item.md") as f:
         body = f.read()
-        print(body)
     headers = {"Authorization": f"Bearer {TOKEN}"}
     item = json.loads(conf)
     item["body"] = body
-    print(item)
 
     if item["id"] == "":
         res = requests.post(BASE_URL, headers=headers, json=item)
@@ -44,6 +36,5 @@ def submit_article(path):
 
 if __name__ == "__main__":
     # res = submit_article("article", conf, body).json()
-    print("main")
     res = submit_article("article")
     print(res["title"], res["url"])
